@@ -1,0 +1,331 @@
+let cart = [];
+
+
+// ADD PRODUCT
+
+function addProduct() {
+
+    let product =
+        document.getElementById("product");
+
+    let productName =
+        product.value;
+
+    let selected =
+        product.options[product.selectedIndex];
+
+    let price =
+        Number(selected.dataset.price);
+
+    let size =
+        document.getElementById("size").value;
+
+    let quantity =
+        Number(
+            document.getElementById("quantity").value
+        );
+
+
+    if (productName === "") {
+
+        alert("Please select a product.");
+
+        return;
+    }
+
+
+    if (size === "") {
+
+        alert("Please select shoe size.");
+
+        return;
+    }
+
+
+    if (quantity <= 0) {
+
+        alert("Enter valid quantity.");
+
+        return;
+    }
+
+
+    let item = {
+
+        name: productName,
+
+        size: size,
+
+        price: price,
+
+        quantity: quantity,
+
+        total: price * quantity
+
+    };
+
+
+    cart.push(item);
+
+
+    displayCart();
+
+    calculateBill();
+
+}
+
+
+// DISPLAY CART
+
+function displayCart() {
+
+    let table =
+        document.getElementById("cartTable");
+
+    table.innerHTML = "";
+
+
+    cart.forEach(function(item, index) {
+
+        let row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>${item.name}</td>
+
+            <td>${item.size}</td>
+
+            <td>${item.quantity}</td>
+
+            <td>₹${item.price}</td>
+
+            <td>₹${item.total}</td>
+
+            <td>
+                <button
+                    class="delete-btn"
+                    onclick="removeProduct(${index})">
+                    Delete
+                </button>
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+// REMOVE PRODUCT
+
+function removeProduct(index) {
+
+    cart.splice(index, 1);
+
+    displayCart();
+
+    calculateBill();
+
+}
+
+
+// CALCULATE BILL
+
+function calculateBill() {
+
+    let subtotal = 0;
+
+
+    cart.forEach(function(item) {
+
+        subtotal += item.total;
+
+    });
+
+
+    let discount =
+        Number(
+            document.getElementById("discount").value
+        );
+
+
+    if (discount > subtotal) {
+
+        discount = subtotal;
+
+        document.getElementById("discount")
+            .value = discount;
+
+    }
+
+
+    let taxableAmount =
+        subtotal - discount;
+
+
+    let gst =
+        taxableAmount * 0.18;
+
+
+    let grandTotal =
+        taxableAmount + gst;
+
+
+    document.getElementById("subtotal")
+        .textContent =
+        subtotal.toFixed(2);
+
+
+    document.getElementById("discountAmount")
+        .textContent =
+        discount.toFixed(2);
+
+
+    document.getElementById("gst")
+        .textContent =
+        gst.toFixed(2);
+
+
+    document.getElementById("grandTotal")
+        .textContent =
+        grandTotal.toFixed(2);
+
+}
+
+
+// GENERATE BILL
+
+function generateBill() {
+
+    if (cart.length === 0) {
+
+        alert("Please add at least one product.");
+
+        return;
+    }
+
+
+    calculateBill();
+
+
+    let billNumber =
+        "FS" +
+        Math.floor(
+            10000 + Math.random() * 90000
+        );
+
+
+    let date =
+        new Date();
+
+
+    document.getElementById("billNo")
+        .textContent =
+        billNumber;
+
+
+    document.getElementById("billDate")
+        .textContent =
+        date.toLocaleDateString();
+
+
+    let billItems =
+        document.getElementById("billItems");
+
+
+    billItems.innerHTML = "";
+
+
+    cart.forEach(function(item) {
+
+        let div =
+            document.createElement("div");
+
+        div.className =
+            "bill-item";
+
+
+        div.innerHTML = `
+
+            <span>
+                ${item.name}
+                (Size ${item.size})
+                × ${item.quantity}
+            </span>
+
+            <span>
+                ₹${item.total.toFixed(2)}
+            </span>
+
+        `;
+
+
+        billItems.appendChild(div);
+
+    });
+
+
+    let subtotal =
+        Number(
+            document.getElementById("subtotal")
+                .textContent
+        );
+
+
+    let discount =
+        Number(
+            document.getElementById("discountAmount")
+                .textContent
+        );
+
+
+    let gst =
+        Number(
+            document.getElementById("gst")
+                .textContent
+        );
+
+
+    let total =
+        Number(
+            document.getElementById("grandTotal")
+                .textContent
+        );
+
+
+    document.getElementById("billSubtotal")
+        .textContent =
+        subtotal.toFixed(2);
+
+
+    document.getElementById("billDiscount")
+        .textContent =
+        discount.toFixed(2);
+
+
+    document.getElementById("billGST")
+        .textContent =
+        gst.toFixed(2);
+
+
+    document.getElementById("billTotal")
+        .textContent =
+        total.toFixed(2);
+
+
+    document.getElementById("bill")
+        .style.display =
+        "block";
+
+
+    document.getElementById("bill")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}

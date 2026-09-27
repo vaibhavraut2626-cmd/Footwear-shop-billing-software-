@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+/* HEADER */
+
+header {
+    background: #1565c0;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+
+/* CONTAINER */
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.container h2 {
+    color: #1565c0;
+    margin-bottom: 20px;
+}
+
+
+/* PRODUCT */
+
+.product-box label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.product-box select,
+.product-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+
+button {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #e68900;
+}
+
+
+/* TABLE */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #1565c0;
+    color: white;
+}
+
+.delete-btn {
+    background: #d32f2f;
+    margin: 0;
+    padding: 7px 10px;
+}
+
+
+/* BILLING */
+
+.billing {
+    margin-top: 25px;
+    text-align: right;
+}
+
+.billing input {
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.billing p {
+    margin: 10px;
+    font-size: 17px;
+}
+
+.billing h2 {
+    margin-top: 15px;
+}
+
+
+/* BILL */
+
+.bill {
+    display: none;
+
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.bill h2 {
+    text-align: center;
+    color: #1565c0;
+}
+
+.bill p {
+    margin: 10px 0;
+}
+
+#billItems {
+    margin: 15px 0;
+}
+
+.bill-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.thank {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px !important;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #1565c0;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .container {
+        margin: 15px;
+        padding: 18px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    .billing {
+        text-align: left;
+    }
+
+    .billing input {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+}
